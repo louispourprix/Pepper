@@ -576,11 +576,21 @@ public class BaseBehaviourLibrary implements BehaviourLibrary, RobotLifecycleCal
         });
     }
 
+
+    //Elements of this function modified by me
     public void holdAwareness() {
         // Build and store the holder for the abilities.
         holder = HolderBuilder.with(qiContext)
-            .withAutonomousAbilities(AutonomousAbilitiesType.BASIC_AWARENESS)
-            .build();
+            //https://qisdk.softbankrobotics.com/sdk/doc/pepper-sdk/ch4_api/abilities/tuto/autonomous_abilities_tutorial.html
+            //three auto abilities for Pepper
+                .withAutonomousAbilities(
+                        AutonomousAbilitiesType.BACKGROUND_MOVEMENT, //engaging movement
+                        AutonomousAbilitiesType.BASIC_AWARENESS,     // eye tracking
+                        AutonomousAbilitiesType.AUTONOMOUS_BLINKING  // blinking
+                )
+                .build();
+
+        //would have been used in conjunction with releaseAwareness() if trying to combine MA and LA
 
         // Hold the abilities asynchronously.
         Future<Void> holdFuture = holder.async().hold();
