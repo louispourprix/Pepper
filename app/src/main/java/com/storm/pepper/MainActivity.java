@@ -66,7 +66,7 @@ public class MainActivity extends RobotActivity implements PepperLog {
     NoElementsListAdapter noElementsAdapter;
 
     private int planResourceId;
-
+    //setSpeechBarDisplayStrategy to modify the speech bar
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,8 +84,9 @@ public class MainActivity extends RobotActivity implements PepperLog {
         planner = new Planner(this);
 
         // configure for chosen plan
-        planResourceId = R.raw.plan_die;
-        behaviourLibrary = new DieBehaviourLibrary();
+        planResourceId = R.raw.plan_honesty;
+        //behaviourLibrary = new HonestyBehaviourLibrary();
+        behaviourLibrary = new HonestyBehaviourLibraryLA();
 //        planResourceId = R.raw.plan_annoy;
 //        behaviourLibrary = new AnnoyBehaviourLibrary();
         // end configure for chosen plan
