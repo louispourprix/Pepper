@@ -1,0 +1,36 @@
+topic: ~honesty_rules()
+# Defining extra concepts out of words or group of words
+#concept:(hello) [hello hi hey "good morning" greetings]
+
+# Replying to speech
+#u:(~hello) ~hello
+
+concept: (y) [yes affirmative positive yeah yup ok correct indeed "yes please" "I guess" "it is"]
+concept: (n) [no negative nope nah "no thanks" "no sorry" "not really" "not at all" "It is not"]
+
+
+u:(~y)
+\vct=70\ \readmode=word\ The game is now starting. $rules=true ^endDiscuss(yes)
+
+u:(~n)
+\vct=70\ \readmode=word\The rules for the dice game will now be repeated. Can I proceed?
+    u1:(~y)
+    \vct=70\ \readmode=word\The objective is to roll the die that is on the table, and then log the result on the laptop.
+    Participants are allowed to roll the die several to check for bias, but only the first throw should be reported.
+    I do not know the outcome of the participant’s roll till they tell me. Is the Participant ready to start the game?
+        u2:(~y)
+        \vct=70\ \readmode=word\The game is now starting. $rules=true ^endDiscuss(yes)
+        u2:(~n)
+        \vct=70\ \readmode=word\The rules for the dice game will now be repeated. Can I proceed?
+            u3:(~y)
+                \vct=70\ \readmode=word\ The objective is to roll the die that is on the table, and then log the result on the laptop.
+                Participants are allowed to roll the die several to check for bias, but only the first throw should be reported.
+                I do not know the outcome of the participant’s roll till they tell me. Is the Participant ready to start the game?
+                    u4:(~y)
+                    \vct=70\ \readmode=word\The game is now starting. $rules=true ^endDiscuss(yes)
+                    u4:(~n)
+                    \vct=70\ \readmode=word\Cannot aid Participant further. Find the experiment supervisor for more details. $rules=false ^endDiscuss(no)
+    u1:(~n)
+    \vct=70\ \readmode=word\Cannot aid Participant further. Find the experiment supervisor for more details. $rules=false ^endDiscuss(no)
+
+#if supervisor intervenes, restart scenario to re-explain the rules to participant so they can confirm they understood the rules
