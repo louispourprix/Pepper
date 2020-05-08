@@ -1,0 +1,32 @@
+topic: ~honesty_rules()
+# Defining extra concepts out of words or group of words
+#concept:(hello) [hello hi hey "good morning" greetings]
+
+# Replying to speech
+#u:(~hello) ~hello
+
+concept: (y) [yes affirmative positive yeah ok yup correct indeed "yes please" "I guess" "it is"]
+concept: (n) [no negative nope nah "no thanks" "no sorry" "not really" "not at all" "it is not"]
+
+u:(~y)
+Alright, let's get started! $rules=true ^endDiscuss(yes)
+
+#repeat rules max amount 2 times, if still no positive answer, involve experimenter then reset plan so that confirmation of rules can be given
+u:(~n)
+I will now repeat the rules of the Dice Game. Is that ok?
+    u1:(~y)
+    Alright! The chart in front of you lets you know which roll gets what amount of money. Just roll the die twice, but remember to write the result you get from your first throw!
+    I don’t know what number you actually rolled till you tell me. Is this any clearer?
+        u2:(~y)
+        Great, we can now start playing! $rules=true ^endDiscuss(yes)
+        u2:(~n)
+        I will now repeat the rules of the Dice Game a final time. Is this what you wish?
+            u3:(~y)
+                One last time! Roll the die, log the first number you get, and then roll it again if you want to check for bias. The reward you get for your throw is shown on the chart in front of you.
+                I have no clue which number you’ve rolled till you tell me. Are you ready to play now?
+                    u4:(~y)
+                    Great, we can now start playing! $rules=true ^endDiscuss(yes)
+                    u4:(~n)
+                    I am unable to help you further. Please find the Jen and relate your problem to her. $rules=false ^endDiscuss(no)
+    u1:(~n)
+    I am unable to help you further. Please find Jen and relate your problem to her. $rules=false ^endDiscuss(no)

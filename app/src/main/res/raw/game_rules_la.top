@@ -1,0 +1,31 @@
+topic: ~game_rules()
+# Defining extra concepts out of words or group of words
+#concept:(hello) [hello hi hey "good morning" greetings]
+
+# Replying to speech
+#u:(~hello) ~hello
+
+concept:(end)[done ok finished "I am done""I have rolled"]
+concept:(die)[1 2 3 4 5 6]
+concept: (y) [yes yeah yup ok correct affirmative indeed "yes please" "I guess" "it is"]
+concept: (n) [no nope nah "no thanks" "no sorry" "not really" "not at all" "It is not"]
+
+#start off before launching topic ie "tell me when you are done"
+u:(~end)
+\vct=70\ \readmode=word\What number was obtained?
+
+#remember the amount logged to repeat for confirmation
+u:(_~die)
+$number=$1
+\vct=70\ \readmode=word\Participant rolled $number is that correct?
+    u1:(~y)
+    \vct=70\ \readmode=word\Please input the result of the roll on the laptop.$transition=true ^endDiscuss(yes)
+    u1:(~n) \vct=70\ \readmode=word\What number was obtained?
+
+u:(["I rolled a" "I got a"]{~die})
+$number=$4
+\vct=70\ \readmode=word\Participant rolled $number is that correct?
+    u1:(~y)
+    \vct=70\ \readmode=word\Please input the result of the roll on the laptop.$transition=true ^endDiscuss(yes)
+    u1:(~n) \vct=70\ \readmode=word\What number was obtained?
+
